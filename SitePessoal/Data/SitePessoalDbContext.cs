@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SitePessoal.Models;
 
 namespace SitePessoal.Data
 {
@@ -12,5 +13,6 @@ namespace SitePessoal.Data
             : base(options)
         {
         }
+        public DbSet<SitePessoal.Models.Experiencia> Experiencia { get; set; }
     }
 }
