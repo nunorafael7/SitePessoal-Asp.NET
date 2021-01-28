@@ -14,5 +14,6 @@ namespace SitePessoal.Data
         {
         }
         public DbSet<SitePessoal.Models.Experiencia> Experiencia { get; set; }
+        public DbSet<SitePessoal.Models.Escola> Escola { get; set; }
     }
 }
