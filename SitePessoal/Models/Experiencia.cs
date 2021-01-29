@@ -8,8 +8,10 @@ namespace SitePessoal.Models
     public class Experiencia
     {
         public int ExperienciaID { get; set; }
+
         public string NomeEmpresa { get; set; }
-      
+        
+
         public string Duracao { get; set; }
     }
 }
