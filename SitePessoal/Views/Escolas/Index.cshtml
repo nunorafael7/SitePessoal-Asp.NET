@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SitePessoal.Models.Escola>
+﻿@model IEnumerable<SitePessoal.Models.Escolas>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,16 +7,19 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Criar nova entrada na Tabela</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeEscola)
+                @Html.DisplayNameFor(model => model.Escola)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataFim)
+                @Html.DisplayNameFor(model => model.Curso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota)
             </th>
             <th></th>
         </tr>
@@ -25,15 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NomeEscola)
+                @Html.DisplayFor(modelItem => item.Escola)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataFim)
+                @Html.DisplayFor(modelItem => item.Curso)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EscolaId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.EscolaId">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.EscolaId">Apagar</a>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EscolasId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EscolasId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EscolasId">Delete</a>
             </td>
         </tr>
 }

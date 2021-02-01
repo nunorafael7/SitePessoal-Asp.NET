@@ -10,8 +10,8 @@ using SitePessoal.Data;
 namespace SitePessoal.Data.Migrations
 {
     [DbContext(typeof(SitePessoalDbContext))]
-    [Migration("20210128154830_Experiencia")]
-    partial class Experiencia
+    [Migration("20210201163159_Escolas")]
+    partial class Escolas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,9 +221,30 @@ namespace SitePessoal.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SitePessoal.Models.Experiencia", b =>
+            modelBuilder.Entity("SitePessoal.Models.Escolas", b =>
                 {
-                    b.Property<int>("ExperienciaID")
+                    b.Property<int>("EscolasId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Curso")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Escola")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Nota")
+                        .HasColumnType("int");
+
+                    b.HasKey("EscolasId");
+
+                    b.ToTable("Escolas");
+                });
+
+            modelBuilder.Entity("SitePessoal.Models.ExperienciaProfissional", b =>
+                {
+                    b.Property<int>("ExperienciaProfissionalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -231,12 +252,15 @@ namespace SitePessoal.Data.Migrations
                     b.Property<string>("Duracao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomeEmpresa")
+                    b.Property<string>("Funcao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ExperienciaID");
+                    b.Property<string>("Trabalho")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Experiencia");
+                    b.HasKey("ExperienciaProfissionalId");
+
+                    b.ToTable("ExperienciaProfissional");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

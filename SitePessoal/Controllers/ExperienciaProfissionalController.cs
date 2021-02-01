@@ -10,22 +10,22 @@ using SitePessoal.Models;
 
 namespace SitePessoal.Controllers
 {
-    public class ExperienciasController : Controller
+    public class ExperienciaProfissionalController : Controller
     {
         private readonly SitePessoalDbContext _context;
 
-        public ExperienciasController(SitePessoalDbContext context)
+        public ExperienciaProfissionalController(SitePessoalDbContext context)
         {
             _context = context;
         }
 
-        // GET: Experiencias
+        // GET: ExperienciaProfissional
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Experiencia.ToListAsync());
+            return View(await _context.ExperienciaProfissional.ToListAsync());
         }
 
-        // GET: Experiencias/Details/5
+        // GET: ExperienciaProfissional/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace SitePessoal.Controllers
                 return NotFound();
             }
 
-            var experiencia = await _context.Experiencia
-                .FirstOrDefaultAsync(m => m.ExperienciaID == id);
-            if (experiencia == null)
+            var experienciaProfissional = await _context.ExperienciaProfissional
+                .FirstOrDefaultAsync(m => m.ExperienciaProfissionalId == id);
+            if (experienciaProfissional == null)
             {
                 return NotFound();
             }
 
-            return View(experiencia);
+            return View(experienciaProfissional);
         }
 
-        // GET: Experiencias/Create
+        // GET: ExperienciaProfissional/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Experiencias/Create
+        // POST: ExperienciaProfissional/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExperienciaID,NomeEmpresa,Duracao")] Experiencia experiencia)
+        public async Task<IActionResult> Create([Bind("ExperienciaProfissionalId,Trabalho,Duracao,Funcao")] ExperienciaProfissional experienciaProfissional)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(experiencia);
+                _context.Add(experienciaProfissional);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(experiencia);
+            return View(experienciaProfissional);
         }
 
-        // GET: Experiencias/Edit/5
+        // GET: ExperienciaProfissional/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace SitePessoal.Controllers
                 return NotFound();
             }
 
-            var experiencia = await _context.Experiencia.FindAsync(id);
-            if (experiencia == null)
+            var experienciaProfissional = await _context.ExperienciaProfissional.FindAsync(id);
+            if (experienciaProfissional == null)
             {
                 return NotFound();
             }
-            return View(experiencia);
+            return View(experienciaProfissional);
         }
 
-        // POST: Experiencias/Edit/5
+        // POST: ExperienciaProfissional/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ExperienciaID,NomeEmpresa,Duracao")] Experiencia experiencia)
+        public async Task<IActionResult> Edit(int id, [Bind("ExperienciaProfissionalId,Trabalho,Duracao,Funcao")] ExperienciaProfissional experienciaProfissional)
         {
-            if (id != experiencia.ExperienciaID)
+            if (id != experienciaProfissional.ExperienciaProfissionalId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace SitePessoal.Controllers
             {
                 try
                 {
-                    _context.Update(experiencia);
+                    _context.Update(experienciaProfissional);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ExperienciaExists(experiencia.ExperienciaID))
+                    if (!ExperienciaProfissionalExists(experienciaProfissional.ExperienciaProfissionalId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace SitePessoal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(experiencia);
+            return View(experienciaProfissional);
         }
 
-        // GET: Experiencias/Delete/5
+        // GET: ExperienciaProfissional/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace SitePessoal.Controllers
                 return NotFound();
             }
 
-            var experiencia = await _context.Experiencia
-                .FirstOrDefaultAsync(m => m.ExperienciaID == id);
-            if (experiencia == null)
+            var experienciaProfissional = await _context.ExperienciaProfissional
+                .FirstOrDefaultAsync(m => m.ExperienciaProfissionalId == id);
+            if (experienciaProfissional == null)
             {
                 return NotFound();
             }
 
-            return View(experiencia);
+            return View(experienciaProfissional);
         }
 
-        // POST: Experiencias/Delete/5
+        // POST: ExperienciaProfissional/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var experiencia = await _context.Experiencia.FindAsync(id);
-            _context.Experiencia.Remove(experiencia);
+            var experienciaProfissional = await _context.ExperienciaProfissional.FindAsync(id);
+            _context.ExperienciaProfissional.Remove(experienciaProfissional);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ExperienciaExists(int id)
+        private bool ExperienciaProfissionalExists(int id)
         {
-            return _context.Experiencia.Any(e => e.ExperienciaID == id);
+            return _context.ExperienciaProfissional.Any(e => e.ExperienciaProfissionalId == id);
         }
     }
 }

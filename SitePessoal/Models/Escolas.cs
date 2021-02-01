@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SitePessoal.Controllers
+namespace SitePessoal.Models
 {
     public class Escolas
     {
-        public int EscolaID { get; set; }
-        public string Nome { get; set; }
+        public int EscolasId { get; set; }
+        public string Escola { get; set; }
         public string Curso { get; set; }
-        public string Nota { get; set; }
+        public int Nota { get; set; }
+
     }
 }

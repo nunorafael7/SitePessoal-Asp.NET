@@ -1,26 +1,31 @@
-﻿@model SitePessoal.Models.Experiencia
+﻿@model SitePessoal.Models.ExperienciaProfissional
 
 @{
     ViewData["Title"] = "Create";
 }
 
+<h1>Create</h1>
 
-
-<h4>Experiência Profissional</h4>
+<h4>ExperienciaProfissional</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeEmpresa" class="control-label">Nome Empresa</label>
-                <input asp-for="NomeEmpresa" class="form-control" />
-                <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
+                <label asp-for="Trabalho" class="control-label"></label>
+                <input asp-for="Trabalho" class="form-control" />
+                <span asp-validation-for="Trabalho" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Duracao" class="control-label"> Duração</label>
+                <label asp-for="Duracao" class="control-label"></label>
                 <input asp-for="Duracao" class="form-control" />
                 <span asp-validation-for="Duracao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Funcao" class="control-label"></label>
+                <input asp-for="Funcao" class="form-control" />
+                <span asp-validation-for="Funcao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -30,7 +35,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltar Atrás</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

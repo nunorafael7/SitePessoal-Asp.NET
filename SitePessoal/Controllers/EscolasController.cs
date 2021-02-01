@@ -22,7 +22,7 @@ namespace SitePessoal.Controllers
         // GET: Escolas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Escola.ToListAsync());
+            return View(await _context.Escolas.ToListAsync());
         }
 
         // GET: Escolas/Details/5
@@ -33,14 +33,14 @@ namespace SitePessoal.Controllers
                 return NotFound();
             }
 
-            var escola = await _context.Escola
-                .FirstOrDefaultAsync(m => m.EscolaId == id);
-            if (escola == null)
+            var escolas = await _context.Escolas
+                .FirstOrDefaultAsync(m => m.EscolasId == id);
+            if (escolas == null)
             {
                 return NotFound();
             }
 
-            return View(escola);
+            return View(escolas);
         }
 
         // GET: Escolas/Create
@@ -54,15 +54,15 @@ namespace SitePessoal.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EscolaId,NomeEscola,DataFim")] Escola escola)
+        public async Task<IActionResult> Create([Bind("EscolasId,Escola,Curso,Nota")] Escolas escolas)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(escola);
+                _context.Add(escolas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(escola);
+            return View(escolas);
         }
 
         // GET: Escolas/Edit/5
@@ -73,12 +73,12 @@ namespace SitePessoal.Controllers
                 return NotFound();
             }
 
-            var escola = await _context.Escola.FindAsync(id);
-            if (escola == null)
+            var escolas = await _context.Escolas.FindAsync(id);
+            if (escolas == null)
             {
                 return NotFound();
             }
-            return View(escola);
+            return View(escolas);
         }
 
         // POST: Escolas/Edit/5
@@ -86,9 +86,9 @@ namespace SitePessoal.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EscolaId,NomeEscola,DataFim")] Escola escola)
+        public async Task<IActionResult> Edit(int id, [Bind("EscolasId,Escola,Curso,Nota")] Escolas escolas)
         {
-            if (id != escola.EscolaId)
+            if (id != escolas.EscolasId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace SitePessoal.Controllers
             {
                 try
                 {
-                    _context.Update(escola);
+                    _context.Update(escolas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EscolaExists(escola.EscolaId))
+                    if (!EscolasExists(escolas.EscolasId))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace SitePessoal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(escola);
+            return View(escolas);
         }
 
         // GET: Escolas/Delete/5
@@ -124,14 +124,14 @@ namespace SitePessoal.Controllers
                 return NotFound();
             }
 
-            var escola = await _context.Escola
-                .FirstOrDefaultAsync(m => m.EscolaId == id);
-            if (escola == null)
+            var escolas = await _context.Escolas
+                .FirstOrDefaultAsync(m => m.EscolasId == id);
+            if (escolas == null)
             {
                 return NotFound();
             }
 
-            return View(escola);
+            return View(escolas);
         }
 
         // POST: Escolas/Delete/5
@@ -139,15 +139,15 @@ namespace SitePessoal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var escola = await _context.Escola.FindAsync(id);
-            _context.Escola.Remove(escola);
+            var escolas = await _context.Escolas.FindAsync(id);
+            _context.Escolas.Remove(escolas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EscolaExists(int id)
+        private bool EscolasExists(int id)
         {
-            return _context.Escola.Any(e => e.EscolaId == id);
+            return _context.Escolas.Any(e => e.EscolasId == id);
         }
     }
 }

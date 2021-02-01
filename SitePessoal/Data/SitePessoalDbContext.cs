@@ -13,7 +13,8 @@ namespace SitePessoal.Data
             : base(options)
         {
         }
-        public DbSet<SitePessoal.Models.Experiencia> Experiencia { get; set; }
-        public DbSet<SitePessoal.Models.Escola> Escola { get; set; }
+        public DbSet<SitePessoal.Models.Escolas> Escolas { get; set; }
+        public DbSet<SitePessoal.Models.ExperienciaProfissional> ExperienciaProfissional { get; set; }
+      
     }
 }

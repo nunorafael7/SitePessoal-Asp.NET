@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace SitePessoal.Models
 {
-    public class Experiencia
+    public class ExperienciaProfissional
     {
-        public int ExperienciaID { get; set; }
-
-        public string NomeEmpresa { get; set; }
-        
-
+        public int ExperienciaProfissionalId { get; set; }
+        public string Trabalho { get; set; }
         public string Duracao { get; set; }
+        public string Funcao { get; set; }
+
     }
 }
