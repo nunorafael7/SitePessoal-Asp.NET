@@ -39,6 +39,10 @@ namespace SitePessoal
                 options.Password.RequireLowercase = true;
                 options.Password.RequiredLength = 6;
                 options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+              
+
+                
 
 
 
