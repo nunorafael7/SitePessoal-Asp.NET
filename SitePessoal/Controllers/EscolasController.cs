@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -56,7 +58,7 @@ namespace SitePessoal.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EscolasId,Escola,Curso,Nota")] Escolas escolas)
+        public async Task<IActionResult> Create([Bind("EscolasId,Escola,Curso,Nota")] Escolas escolas, IFormFile ficheiroFoto)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +66,15 @@ namespace SitePessoal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            if (ficheiroFoto != null && ficheiroFoto.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroFoto.CopyTo(ficheiroMemoria);
+                    escolas.foto = ficheiroMemoria.ToArray();
+                }
+            }
+            
             return View(escolas);
         }
 

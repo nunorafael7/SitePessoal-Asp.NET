@@ -11,6 +11,6 @@ namespace SitePessoal.Models
         public string Escola { get; set; }
         public string Curso { get; set; }
         public int Nota { get; set; }
-
+        public byte[] foto { get; set; }
     }
 }
