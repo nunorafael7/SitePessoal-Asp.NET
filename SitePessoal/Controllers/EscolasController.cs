@@ -62,19 +62,21 @@ namespace SitePessoal.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (ficheiroFoto != null && ficheiroFoto.Length > 0)
+                {
+                    using (var ficheiroMemoria = new MemoryStream())
+                    {
+                        ficheiroFoto.CopyTo(ficheiroMemoria);
+                        escolas.Foto = ficheiroMemoria.ToArray();
+
+                    }
+                }
                 _context.Add(escolas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            if (ficheiroFoto != null && ficheiroFoto.Length > 0)
-            {
-                using (var ficheiroMemoria = new MemoryStream())
-                {
-                    ficheiroFoto.CopyTo(ficheiroMemoria);
-                    escolas.foto = ficheiroMemoria.ToArray();
-                }
-            }
-            
+          
+
             return View(escolas);
         }
 

@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Fotografia
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Escola)
             </th>
             <th>
@@ -25,23 +28,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Escola)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Curso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nota)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EscolasId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.EscolasId">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.EscolasId">Apagar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (Escolas.Foto != null)
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Escolas.Foto)" class="img-fluid" />
+
+                     }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Escola)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Curso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EscolasId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.EscolasId">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EscolasId">Apagar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
