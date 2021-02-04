@@ -13,7 +13,7 @@ using SitePessoal.Models;
 
 namespace SitePessoal.Controllers
 {
-    [Authorize]
+    
     public class EscolasController : Controller
     {
         private readonly SitePessoalDbContext _context;
@@ -56,6 +56,7 @@ namespace SitePessoal.Controllers
         // POST: Escolas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EscolasId,Escola,Curso,Nota")] Escolas escolas, IFormFile ficheiroFoto)
@@ -99,6 +100,7 @@ namespace SitePessoal.Controllers
         // POST: Escolas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EscolasId,Escola,Curso,Nota")] Escolas escolas)
@@ -150,6 +152,7 @@ namespace SitePessoal.Controllers
         }
 
         // POST: Escolas/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

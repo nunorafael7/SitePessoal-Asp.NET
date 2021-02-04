@@ -10,6 +10,8 @@ namespace SitePessoal.Data
     {
         private const string NOME_ADMIN = "nuno_rgf@hotmail.com";
         private const string PASSWORD_ADMIN = "Nuno290998";
+       
+
 
         internal static async Task InsereAdministradorPadraoAsync(UserManager<IdentityUser> gestorUtilizadores)
         {
@@ -18,9 +20,13 @@ namespace SitePessoal.Data
             {
                 utilizador = new IdentityUser(NOME_ADMIN);
                 await gestorUtilizadores.CreateAsync(utilizador, PASSWORD_ADMIN);
+               
             }
-           
-           
+          
+
+
         }
+
+        
     }
 }
